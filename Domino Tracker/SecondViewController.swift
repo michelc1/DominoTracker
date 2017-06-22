@@ -33,7 +33,7 @@ class SecondViewController: UIViewController, AVCaptureVideoDataOutputSampleBuff
     func take(){
         if !self.taken {
             self.taken = true
-            self.imageView.image = OpenCVWrapper.convert(self.imageView.image)
+            self.imageView.image = OpenCVWrapper.detectDots(self.imageView.image)
         }
     }
     

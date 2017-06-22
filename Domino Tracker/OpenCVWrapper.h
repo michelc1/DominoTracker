@@ -11,5 +11,5 @@
 
 @interface OpenCVWrapper : NSObject
     - (void)isThisWorking;
-    +(UIImage *)ConvertImage:(UIImage *)image;
+    +(UIImage *)detectDots:(UIImage *)image;
 @end
