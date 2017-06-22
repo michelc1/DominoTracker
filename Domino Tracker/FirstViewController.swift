@@ -39,7 +39,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     //This function sets up de window programmatically
     func setUpWindow() {
         
-        addRoundButton.setTitle("Añadir Ronda", for: .normal)
+        addRoundButton.setTitle("Add Round", for: .normal)
         addRoundButton.addTarget(self, action: #selector(FirstViewController.showTeamSelectionPopUp), for: .touchUpInside)
         
         clearButton.addTarget(self, action: #selector(FirstViewController.clear), for: .touchUpInside)
@@ -84,11 +84,11 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func showTeamSelectionPopUp(){
         // create the alert
-        let alert = UIAlertController(title: "Añadir ronda", message: "Seleccione equipo a añadir ronda", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Add Round", message: "Select a team to add the point", preferredStyle: UIAlertControllerStyle.alert)
         
         // add the actions (buttons)
-        alert.addAction(UIAlertAction(title: us.text, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in self.showAddValueOfRound(team: "us")}))
-        alert.addAction(UIAlertAction(title: them.text, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in self.showAddValueOfRound(team: "them")}))
+        alert.addAction(UIAlertAction(title: us.text, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in self.showAddValueOfRound(team: "US")}))
+        alert.addAction(UIAlertAction(title: them.text, style: UIAlertActionStyle.default, handler: { (action: UIAlertAction!) in self.showAddValueOfRound(team: "THEM")}))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         
         // show the alert
@@ -96,21 +96,21 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func showAddValueOfRound(team: String){
-        let alert = UIAlertController(title: "Coloque el numero de la ronda", message: "Añadiendo a \(team)", preferredStyle: UIAlertControllerStyle.alert)
+        let alert = UIAlertController(title: "Put the number of points to add", message: "Adding to \(team)", preferredStyle: UIAlertControllerStyle.alert)
         
-        let addValueAction = UIAlertAction(title: "Añadir", style: .default) { (_) in
+        let addValueAction = UIAlertAction(title: "Add", style: .default) { (_) in
             if (alert.textFields?[0]) != nil {
                 // store your data
                 let textField = alert.textFields!.first
                 self.rounds.append((team, Int((textField?.text)!)!))
-                if (team == "us"){
+                if (team == "US"){
                     self.sumUs += Int((textField?.text)!)!
                 } else {
                     self.sumThem += Int((textField?.text)!)!
                 }
                 self.scoreBoard.reloadData()
             } else {
-                let newAlert = UIAlertController(title: "Error!", message: "Coloque un valor a añadir", preferredStyle: UIAlertControllerStyle.alert)
+                let newAlert = UIAlertController(title: "Error!", message: "Put a score to add", preferredStyle: UIAlertControllerStyle.alert)
                 newAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
                 self.showAddValueOfRound(team: team)
                 // user did not fill field
@@ -128,13 +128,13 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     let us: UILabel = {
         let lb = UILabel()
-        lb.text = "us"
+        lb.text = "US"
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
     let them: UILabel = {
         let lb = UILabel()
-        lb.text = "them"
+        lb.text = "THEM"
         lb.translatesAutoresizingMaskIntoConstraints = false
         return lb
     }()
@@ -237,6 +237,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
         print("TEST")
     }
 }
+
 
 
 
